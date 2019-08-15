@@ -569,7 +569,6 @@ class TusFilter(object):
         body = env.req.body_file
         with open(fpath, 'ab+') as f:
             f.seek(0, os.SEEK_END)
-            body.seek(0)
             shutil.copyfileobj(body, f)
             offset = f.tell()
 
