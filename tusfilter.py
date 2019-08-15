@@ -242,6 +242,11 @@ class TusFilter(object):
         version = version or self.versions[0]   # OPTIONS version maybe None
         env.temp['version'] = version
         env.resp.headers['Tus-Resumable'] = version
+        env.resp.headers['Access-Control-Allow-Origin'] = '*'
+        env.resp.headers['Access-Control-Allow-Credentials'] = 'true'
+        env.resp.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Tus-Resumable, Upload-Length, Upload-Metadata, Upload-Offset'
+        env.resp.headers['Access-Control-Expose-Headers'] = 'Location, Upload-Offset, Upload-Length'
+        env.resp.headers['Access-Control-Allow-Methods'] = 'PATCH, POST'
 
         if method == 'POST':
             self.post(env)
